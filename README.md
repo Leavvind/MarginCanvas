@@ -1,13 +1,7 @@
 # MarginNote Style Canvas
 
 MarginNote Style Canvas brings a MarginNote-like research capture workflow to
-Obsidian Canvas. It can send Zotero excerpts to the Canvas text Card currently
-being edited, or append pasted and dropped text to one selected Card without
-entering edit mode first.
-
-> Current project version: **0.4.0**. The project is now structured as a
-> maintainable Obsidian plugin; `1.0.0` is reserved for completion of in-app
-> verification of both capture modes.
+Obsidian Canvas: By improving the experience of sending excerpts to Node(Cancvas text notes). 
 
 ## Modes
 
@@ -59,33 +53,6 @@ Use any of these surfaces:
   - `MarginNote Style Canvas: Show status`
 
 The selected mode persists across restarts.
-
-## Manual installation
-
-Download the release archive and extract it so the installed directory is
-exactly:
-
-```text
-<Vault>/.obsidian/plugins/marginnote-style-canvas/
-├── main.js
-├── manifest.json
-└── versions.json
-```
-
-Then reload Obsidian and enable **MarginNote Style Canvas** under Community
-plugins.
-
-## Migrating from Zotero Canvas Card Auto Paste
-
-The formal plugin uses a new ID: `marginnote-style-canvas`.
-
-1. Disable `Zotero Canvas Card Auto Paste`.
-2. Remove or rename its old `zotero-canvas-card-autopaste` plugin folder.
-3. Install this project under `marginnote-style-canvas`.
-4. Choose the desired mode once; subsequent changes are persisted.
-
-Do not enable both plugin IDs simultaneously, because both can monitor the
-clipboard.
 
 ## Development
 
