@@ -1,0 +1,8 @@
+node_modules/
+.npm-cache/
+main.js
+main.js.map
+releases/
+.release-tmp/
+.DS_Store
+*.log
