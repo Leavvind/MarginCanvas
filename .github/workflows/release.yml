@@ -19,7 +19,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Verify tag matches manifest version
-        run: test "$GITHUB_REF_NAME" = "$(node -p 'require(\"./manifest.json\").version')"
+        run: test "$GITHUB_REF_NAME" = "$(node -p 'require("./manifest.json").version')"
       - run: npm run package
       - uses: softprops/action-gh-release@v2
         with:
