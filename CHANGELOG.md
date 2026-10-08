@@ -1,6 +1,15 @@
 # Changelog
 
-All notable changes to MarginNote Style Canvas are documented here.
+All notable changes to MarginCanvas are documented here.
+
+## 0.5.0 - 2026-10-09
+
+### Changed
+
+- Renamed the plugin to **MarginCanvas** (id `margin-canvas`).
+  Obsidian treats this as a new plugin: disable and remove the old
+  `marginnote-style-canvas` folder, then re-select your capture mode.
+- Installable through BRAT from GitHub Releases.
 
 ## 0.4.0 - 2026-08-05
 

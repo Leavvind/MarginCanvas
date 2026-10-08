@@ -1,6 +1,6 @@
 {
-  "name": "marginnote-style-canvas",
-  "version": "0.4.0",
+  "name": "margin-canvas",
+  "version": "0.5.0",
   "description": "A MarginNote-style capture and paste workflow for Obsidian Canvas.",
   "private": true,
   "type": "module",

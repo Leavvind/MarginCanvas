@@ -1,7 +1,25 @@
-# MarginNote Style Canvas
+# MarginCanvas
 
-MarginNote Style Canvas brings a MarginNote-like research capture workflow to
+MarginCanvas brings a MarginNote-like research capture workflow to
 Obsidian Canvas: By improving the experience of sending excerpts to Node(Cancvas text notes). 
+
+## Installation
+
+### With BRAT (recommended for now)
+
+1. Install and enable [BRAT](https://github.com/TfTHacker/obsidian42-brat) in Obsidian.
+2. Run the command **BRAT: Add a beta plugin for testing**.
+3. Enter `Leavvind/MarginCanvas` and confirm.
+4. Enable **MarginCanvas** under Settings → Community plugins.
+
+BRAT installs the latest GitHub Release (`main.js` + `manifest.json`) and
+updates it automatically.
+
+### Manual
+
+Download `main.js` and `manifest.json` from the latest
+[release](https://github.com/Leavvind/MarginCanvas/releases) into
+`<vault>/.obsidian/plugins/margin-canvas/`, then enable the plugin.
 
 ## Modes
 
@@ -43,14 +61,15 @@ Clipboard monitoring and selected-Card paste/drop interception are disabled.
 
 Use any of these surfaces:
 
-- Settings → **MarginNote Style Canvas** → **Capture mode**
+- Settings → **MarginCanvas** → **Capture mode**
+- Click the left ribbon icon to cycle modes
 - Click the status-bar mode label
 - Command Palette:
-  - `MarginNote Style Canvas: Set mode: Editing Card auto capture`
-  - `MarginNote Style Canvas: Set mode: Selected Card paste and drop`
-  - `MarginNote Style Canvas: Turn off`
-  - `MarginNote Style Canvas: Cycle mode`
-  - `MarginNote Style Canvas: Show status`
+  - `MarginCanvas: Set mode: Editing Card auto capture`
+  - `MarginCanvas: Set mode: Selected Card paste and drop`
+  - `MarginCanvas: Turn off`
+  - `MarginCanvas: Cycle mode`
+  - `MarginCanvas: Show status`
 
 The selected mode persists across restarts.
 

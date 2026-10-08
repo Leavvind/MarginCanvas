@@ -1,9 +1,9 @@
 {
-  "id": "marginnote-style-canvas",
-  "name": "MarginNote Style Canvas",
-  "version": "0.4.0",
+  "id": "margin-canvas",
+  "name": "MarginCanvas",
+  "version": "0.5.0",
   "minAppVersion": "1.4.0",
   "description": "Capture, format, and append research excerpts to Obsidian Canvas cards with a MarginNote-style workflow.",
-  "author": "MarginNote Style Canvas contributors",
+  "author": "MarginCanvas contributors",
   "isDesktopOnly": true
 }

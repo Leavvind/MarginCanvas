@@ -5,6 +5,7 @@ import {
     PluginSettingTab,
     Setting,
     editorInfoField,
+    setIcon,
 } from "obsidian";
 
 import {
@@ -23,6 +24,8 @@ import {
     POLL_INTERVAL,
     isCaptureMode,
     modeNoticeText,
+    modeRibbonIcon,
+    modeRibbonTooltip,
     modeStatusText,
     type CaptureMode,
 } from "./constants";
@@ -40,7 +43,7 @@ const { clipboard } = require("electron") as {
     clipboard: ClipboardReader;
 };
 
-export default class MarginNoteStyleCanvasPlugin extends Plugin {
+export default class MarginCanvasPlugin extends Plugin {
     mode: CaptureMode = MODES.EDITOR;
 
     private lastClipboardText = "";
@@ -48,6 +51,7 @@ export default class MarginNoteStyleCanvasPlugin extends Plugin {
     private activeCard: CanvasTextCard | null = null;
     private polling = false;
     private statusBarItem: HTMLElement | null = null;
+    private ribbonIconEl: HTMLElement | null = null;
 
     async onload(): Promise<void> {
         const saved = ((await this.loadData()) ?? {}) as PluginData;
@@ -67,7 +71,8 @@ export default class MarginNoteStyleCanvasPlugin extends Plugin {
         ]);
 
         this.addModeCommands();
-        this.addSettingTab(new MarginNoteStyleCanvasSettingTab(this.app, this));
+        this.addRibbonModeSwitcher();
+        this.addSettingTab(new MarginCanvasSettingTab(this.app, this));
 
         this.registerDomEvent(
             document,
@@ -86,7 +91,7 @@ export default class MarginNoteStyleCanvasPlugin extends Plugin {
         this.statusBarItem.addEventListener("click", () => {
             void this.cycleMode();
         });
-        this.updateStatusBar();
+        this.updateModeUi();
 
         this.registerInterval(
             window.setInterval(() => {
@@ -100,8 +105,17 @@ export default class MarginNoteStyleCanvasPlugin extends Plugin {
         this.lastClipboardText = clipboard.readText();
 
         await this.saveData({ mode } satisfies PluginData);
-        this.updateStatusBar();
+        this.updateModeUi();
         new Notice(modeNoticeText(mode));
+    }
+
+    private addRibbonModeSwitcher(): void {
+        this.ribbonIconEl = this.addRibbonIcon(
+            modeRibbonIcon(this.mode),
+            modeRibbonTooltip(this.mode),
+            () => void this.cycleMode(),
+        );
+        this.ribbonIconEl.addClass("margin-canvas-ribbon");
     }
 
     private addModeCommands(): void {
@@ -214,7 +228,7 @@ export default class MarginNoteStyleCanvasPlugin extends Plugin {
             new Notice("✨ 已粘贴到正在编辑的 Canvas Card");
         } catch (error) {
             console.error(
-                "MarginNote Style Canvas: editor auto capture",
+                "MarginCanvas: editor auto capture",
                 error,
             );
             new Notice("Canvas Card 编辑器自动粘贴失败，请查看开发者控制台");
@@ -333,21 +347,33 @@ export default class MarginNoteStyleCanvasPlugin extends Plugin {
         return activeView?.getViewType() === "canvas" ? editor : null;
     }
 
+    private updateModeUi(): void {
+        this.updateStatusBar();
+        this.updateRibbon();
+    }
+
     private updateStatusBar(): void {
         if (!this.statusBarItem) return;
 
         this.statusBarItem.setText(modeStatusText(this.mode));
         this.statusBarItem.setAttribute(
             "aria-label",
-            "MarginNote Style Canvas：点击切换模式",
+            "MarginCanvas：点击切换模式",
         );
+    }
+
+    private updateRibbon(): void {
+        if (!this.ribbonIconEl) return;
+
+        setIcon(this.ribbonIconEl, modeRibbonIcon(this.mode));
+        this.ribbonIconEl.setAttribute("aria-label", modeRibbonTooltip(this.mode));
     }
 }
 
-class MarginNoteStyleCanvasSettingTab extends PluginSettingTab {
+class MarginCanvasSettingTab extends PluginSettingTab {
     constructor(
-        app: MarginNoteStyleCanvasPlugin["app"],
-        private readonly plugin: MarginNoteStyleCanvasPlugin,
+        app: MarginCanvasPlugin["app"],
+        private readonly plugin: MarginCanvasPlugin,
     ) {
         super(app, plugin);
     }
