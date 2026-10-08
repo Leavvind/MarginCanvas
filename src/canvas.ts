@@ -29,7 +29,7 @@ export function appendToTextCard(
         canvas.requestSave?.();
         return { status: "inserted" };
     } catch (error) {
-        console.error("MarginNote Style Canvas: append to selected Card", error);
+        console.error("MarginCanvas: append to selected Card", error);
         return { status: "error" };
     }
 }

@@ -1,4 +1,4 @@
-export const PLUGIN_ID = "marginnote-style-canvas";
+export const PLUGIN_ID = "margin-canvas";
 
 export const MODES = {
     EDITOR: "editor",
@@ -25,7 +25,7 @@ export function modeNoticeText(mode: CaptureMode): string {
         return "🟠 模式：所选 Canvas Card 粘贴/拖拽追加";
     }
 
-    return "🛑 MarginNote Style Canvas 已关闭";
+    return "🛑 MarginCanvas 已关闭";
 }
 
 export function modeStatusText(mode: CaptureMode): string {
@@ -36,4 +36,28 @@ export function modeStatusText(mode: CaptureMode): string {
     };
 
     return labels[mode];
+}
+
+export function modeMenuLabel(mode: CaptureMode): string {
+    const labels: Record<CaptureMode, string> = {
+        [MODES.EDITOR]: "Editing Card auto capture",
+        [MODES.SELECTED]: "Selected Card paste and drop",
+        [MODES.OFF]: "Off",
+    };
+
+    return labels[mode];
+}
+
+export function modeRibbonIcon(mode: CaptureMode): string {
+    const icons: Record<CaptureMode, string> = {
+        [MODES.EDITOR]: "square-pen",
+        [MODES.SELECTED]: "mouse-pointer-click",
+        [MODES.OFF]: "circle-off",
+    };
+
+    return icons[mode];
+}
+
+export function modeRibbonTooltip(mode: CaptureMode): string {
+    return `MarginCanvas: ${modeMenuLabel(mode)}（点击切换）`;
 }
